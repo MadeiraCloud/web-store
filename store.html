@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Stack Store</title>
+    </head>
+    <body>
+        <style type="text/css">
+            #stack-list li a {
+                cursor: pointer;
+            }
+            #stack-list li a:hover {
+                color: #0f0;
+            }
+        </style>
+
+        <script type="text/javascript" src="./lib.min.js"></script>
+
+        <script id="stack-list-tpl" type="text/x-dot-template">
+            {{~it :value:index}}
+                <li><a href="#{{=value.id}}">{{=value.name}}</a></li>
+            {{~}}
+        </script>
+
+        <script id="stack-intro-tpl" type="text/x-dot-template">
+            <a class="run-stack" href="http://127.0.0.1:3000/" target="_blank" data-id="{{=it.id}}">{{=it.introduce}}</a>
+            <a href="#index">index</a>
+        </script>
+
+        <script type="text/javascript" src="./app.js"></script>
+
+        <ul id="stack-list"></ul>
+        <div id="stack-intro"></div>
+    </body>
+</html>
