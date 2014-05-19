@@ -3,33 +3,55 @@
     <head>
         <meta charset="utf-8">
         <title>Stack Store</title>
+        <link rel="stylesheet" type="text/css" href="./fontello.css">
+        <link rel="stylesheet" type="text/css" href="./style.css">
     </head>
     <body>
-        <style type="text/css">
-            #stack-list li a {
-                cursor: pointer;
-            }
-            #stack-list li a:hover {
-                color: #0f0;
-            }
-        </style>
+        <div id="header">
+            <img id="logo" src="./logo.svg" />
+        </div>
 
+        <div id="main" class="animation-show">
+            <a class="nav">Stack Store</a>
+            <div class="info">VisualOps StackStore is a application for your driver bi shina application for your driver bi shina application for your driver bi shina application for your driver bi shina application for your driver bi shina </div>
+            <ul id="stack-list"></ul>
+        </div>
+
+        <div id="intro" class="animation-hidden">
+
+        </div>
+
+        <div class="gear-loading"></div>
+
+        <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
         <script type="text/javascript" src="./lib.min.js"></script>
 
         <script id="stack-list-tpl" type="text/x-dot-template">
             {{~it :value:index}}
-                <li><a href="#{{=value.id}}">{{=value.name}}</a></li>
+                <li class="stack-item">
+                    <a href="#{{=value.id}}">
+                        <img class="logo" src="http://www.appanddone.com/assets/redis-654907cad1b25527e74c2f65c442575b.png" />
+                        <div class="link">{{=value.name}}</div>
+                    </a>
+                </li>
             {{~}}
         </script>
 
         <script id="stack-intro-tpl" type="text/x-dot-template">
-            <a class="run-stack" href="http://127.0.0.1:3000/" target="_blank" data-id="{{=it.id}}">{{=it.introduce}}</a>
-            <a href="#index">index</a>
+            <a class="nav" href="#index"><i class="icon icon-left-open"></i>Stack Store</a>
+            <div class="intro-header">
+                <div class="head">
+                    <img class="logo" src="http://www.appanddone.com/assets/redis-654907cad1b25527e74c2f65c442575b.png" />
+                    <div class="info">
+                        <div class="name">Redis Cluster Snapshot</div>
+                        <div class="description">Redis cluster snapshot</div>
+                    </div>
+                </div>
+                <a class="run" href="http://127.0.0.1:3000/" target="_blank" data-id="{{=it.id}}"><i class="icon icon-play"></i>Launch</a>
+            </div>
+            <div class="intro">{{=it.introduce}}</div>
         </script>
 
         <script type="text/javascript" src="./app.js"></script>
-
-        <ul id="stack-list"></ul>
-        <div id="stack-intro"></div>
     </body>
 </html>
