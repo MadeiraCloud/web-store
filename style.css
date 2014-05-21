@@ -196,7 +196,7 @@ a {
 	width: 120px;
 	height: 40px;
 	border: 1px solid #00bf09;
-	/*float: right;*/
+	float: right;
 	border-radius: 3px;
 	text-align: center;
 	line-height: 42px;
@@ -205,8 +205,6 @@ a {
 	cursor: pointer;
 	font-weight: bold;
 	margin-top: 10px;
-	right: 10px;
-	position: absolute;
 }
 
 #intro .intro-header .run .icon-play {
