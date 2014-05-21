@@ -236,6 +236,11 @@ a {
 #intro .intro-header .description {
 	color: #aaa;
 	margin-top: 5px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	width: 740px;
 }
 
 #intro .intro {
@@ -258,6 +263,11 @@ a {
 	margin-top: 0 !important;
 	opacity: 0.95;
 	z-index: 999;
+}
+
+.header-wrapper {
+	height: 62px;
+	width: 100%;
 }
 
 .service-error {

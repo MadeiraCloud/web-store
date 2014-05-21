@@ -50,16 +50,18 @@
 
         <script id="stack-intro-tpl" type="text/x-dot-template">
             <a class="nav" href="#index"><i class="icon icon-left-open"></i>Stack Store</a>
-            <header class="intro-header">
-                <div class="head">
-                    <img class="logo" src="http://www.appanddone.com/assets/redis-654907cad1b25527e74c2f65c442575b.png" />
-                    <div class="info">
-                        <div class="name">Redis Cluster Snapshot</div>
-                        <div class="description">Redis cluster snapshot</div>
+            <div class="header-wrapper">
+                <header class="intro-header">
+                    <div class="head">
+                        <img class="logo" src="http://www.appanddone.com/assets/redis-654907cad1b25527e74c2f65c442575b.png" />
+                        <div class="info">
+                            <div class="name">{{=it.name}}</div>
+                            <div class="description" title="{{=it.description}}">{{=it.description}}</div>
+                        </div>
                     </div>
-                </div>
-                <a class="run" href="{{=it.launch_url}}" target="_blank" data-id="{{=it.id}}"><i class="icon icon-play"></i>Launch</a>
-            </header>
+                    <a class="run" href="{{=it.launch_url}}" target="_blank" data-id="{{=it.id}}"><i class="icon icon-play"></i>Launch</a>
+                </header>
+            </div>
             <div class="intro">{{=it.introduce}}</div>
         </script>
 
