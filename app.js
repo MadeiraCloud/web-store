@@ -85,7 +85,7 @@ App.prototype.getStateStoreData = function(callback) {
                 callback(null);
             },
             error: function(xhr, status, error) {
-                console.log(error);
+                callback(true);
             }
         });
     }
@@ -94,8 +94,14 @@ App.prototype.getStateStoreData = function(callback) {
 App.prototype.renderStackList = function() {
     var that = this;
     that.getStateStoreData(function(err) {
-        var htmlStr = that.stackListTpl(that.storeDataJSON);
-        $('#stack-list').html(htmlStr);
+        if (err) {
+            $('#main').show();
+            $('#intro').hide();
+            $('#stack-list').html('<div class="service-error">Service temporarily not available :(</div>');
+        } else {
+            var htmlStr = that.stackListTpl(that.storeDataJSON);
+            $('#stack-list').html(htmlStr);
+        }
     });
 };
 
@@ -111,8 +117,8 @@ App.prototype.renderStackIntro = function(stackId) {
             $introDom.html(htmlStr);
             var $headerDom = $('#intro .intro-header');
             var elementPosition = $headerDom.offset();
-            $(window).off('scroll').on('scroll', function(){
-                if($(window).scrollTop() > elementPosition.top){
+            $(window).off('scroll').on('scroll', function() {
+                if ($(window).scrollTop() > elementPosition.top) {
                       $headerDom.addClass('float-panel');
                 } else {
                     $headerDom.removeClass('float-panel');
