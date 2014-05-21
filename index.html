@@ -4,16 +4,15 @@
 <![if !IE]><html><![endif]>
     <head>
         <meta charset="utf-8">
-        <title>Stack Store</title>
-        <link rel="stylesheet" type="text/css" href="./fontello.css">
-        <link rel="stylesheet" type="text/css" href="./style.css">
+        <title>VisualOps - Stack Store</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
 
         <section id="wrapper">
 
             <header id="header">
-                <a href="http://www.visualops.io/" target="_blank"><img id="logo" src="./logo.svg" /></a>
+                <a href="http://www.visualops.io/" target="_blank"><img id="logo" src="logo.svg" /></a>
                 <a class="launch" href="http://www.visualops.io/" target="_blank">MAIN PAGE</a>
             </header>
 
@@ -37,10 +36,6 @@
             </footer>
 
         </section>
-
-        <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-
-        <script type="text/javascript" src="./lib.min.js"></script>
 
         <script id="stack-list-tpl" type="text/x-dot-template">
             {{~it :value:index}}
@@ -68,6 +63,7 @@
             <div class="intro">{{=it.introduce}}</div>
         </script>
 
-        <script type="text/javascript" src="./app.js"></script>
+        <script type="text/javascript" src="lib.js"></script>
+        <script type="text/javascript" src="app.js"></script>
     </body>
 </html>
