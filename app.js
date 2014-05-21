@@ -101,14 +101,18 @@ App.prototype.renderStackList = function() {
     var that = this;
     that.getStateStoreData(function(err) {
         if (err) {
-            $('#main').show();
-            $('#intro').hide();
-            $('#stack-list').html('<div class="service-error">Service temporarily not available :(</div>');
+            that.renderErrorInfo('Service temporarily not available :(');
         } else {
             var htmlStr = that.stackListTpl(that.storeDataJSON);
             $('#stack-list').html(htmlStr);
         }
     });
+};
+
+App.prototype.renderErrorInfo = function(infoTxt) {
+    $('#main').show();
+    $('#intro').hide();
+    $('#stack-list').html('<div class="service-error">' + infoTxt + '</div>');
 };
 
 App.prototype.renderStackIntro = function(stackId) {
@@ -130,6 +134,8 @@ App.prototype.renderStackIntro = function(stackId) {
                     $headerDom.removeClass('float-panel');
                 }
             });
+        } else {
+            that.renderErrorInfo('Page not found :(');
         }
     }
 };
