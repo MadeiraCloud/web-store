@@ -1,7 +1,7 @@
 var App = function() {
     var that = this;
 
-    that.cookieDomain = 'mc3.io';
+    that.cookieDomain = '.mc3.io';
     that.apiURL = 'http://api.mc3.io/stackstore/';
     that.launchURL = 'http://ide.mc3.io/';
 
@@ -20,7 +20,8 @@ var App = function() {
     $(document).on('click', '#intro .run', function(event) {
         var btnDom = $(event.currentTarget);
         var stackId = btnDom.data('id');
-        $.cookie('stack_store_id', stackId, {
+        var stackIdStamp = stackId + '#' + (new Date()).getTime();
+        $.cookie('stack_store_id', stackIdStamp, {
             domain: that.cookieDomain
         });
     }).on('click', '#main .stack-item a', function(event) {
