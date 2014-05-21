@@ -11,8 +11,8 @@ img {
 }
 
 body {
-	background-color: #000;
-	background: url(bg.png) no-repeat;
+	background-color: #fff;
+	/*background: url(bg.png) no-repeat;*/
 }
 
 ul {
@@ -100,9 +100,6 @@ a {
 	left: 50%;
 	padding-bottom: 150px;
 	min-height: 300px;
-}
-
-#intro {
 	display: none;
 }
 
