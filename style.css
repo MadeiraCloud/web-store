@@ -261,18 +261,18 @@ a {
 }
 
 /* animation */
-.animation-hidden {
-	-webkit-animation: 0.3s hidden forwards;
-	animation: 0.3s hidden forwards;
+.animation-hide {
+	-webkit-animation: 0.3s hide forwards;
+	animation: 0.3s hide forwards;
 	opacity: 1;
 	display: none;
 }
 
-.lte-ie9 .animation-hidden {
+.lte-ie9 .animation-hide {
 	opacity: 0;
 }
 
-@-webkit-keyframes hidden {
+@-webkit-keyframes hide {
 	0% {
 		left: 50%;
 	}
@@ -282,7 +282,7 @@ a {
 	}
 }
 
-@keyframes hidden {
+@keyframes hide {
 	0% {
 		left: 50%;
 	}
