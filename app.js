@@ -1,7 +1,12 @@
 var App = function() {
     var that = this;
+
+    $.support.cors = true;
+
     that.stackListTpl = doT.template($('#stack-list-tpl').html());
     that.stackIntroTpl = doT.template($('#stack-intro-tpl').html());
+
+    that.markdownConvert = new Markdown.Converter()
     
     that.storeDataJSON = null;
     that.storeDataMap = null;
@@ -17,26 +22,30 @@ var App = function() {
     });
 
     $(document).on('click', '#main .stack-item a', function(event) {
-        $('#main').removeClass('animation-show').addClass('animation-hidden');
-        $('#intro').removeClass('animation-hidden').addClass('animation-show');
+        $('#main').hide().removeClass('animation-show').addClass('animation-hide');
+        $('#intro').show().removeClass('animation-hide').addClass('animation-show');
+        $(document).scrollTop(0);
     });
 
     $(document).on('click', '#intro .nav', function(event) {
-        $('#main').show();
-        $('#main').removeClass('animation-hidden').addClass('animation-show');
-        $('#intro').removeClass('animation-show').addClass('animation-hidden');
+        $('#main').show().removeClass('animation-hide').addClass('animation-show');
+        $('#intro').hide().removeClass('animation-show').addClass('animation-hide');
     });
 
     routie(':stackId', function(stackId) {
         that.stackId = stackId;
-        if (stackId && stackId !== 'index') {
-            
-        }
-        $('#main').hide();
         if (that.dataReady) {
             that.renderStackIntro(stackId);
         }
     });
+
+    if (!that.stackId || that.stackId === 'index') {
+        $('#main').show();
+        $('#intro').hide();
+    } else {
+        $('#main').hide();
+        $('#intro').show();
+    }
 };
 
 App.prototype.getStateStoreData = function(callback) {
@@ -45,8 +54,9 @@ App.prototype.getStateStoreData = function(callback) {
         callback(null);
     } else {
         $.ajax({
-            url: 'https://api.mc3.io/stackstore/',
+            url: 'http://api.mc3.io/stackstore/',
             dataType: 'JSON',
+            contentType: 'text/plain',
             type: 'POST',
             data: JSON.stringify({
                 "jsonrpc": "2.0",
@@ -99,10 +109,10 @@ App.prototype.getStateStoreData = function(callback) {
                         "introduce": "apache-hadoop"
                     },
                     {
-                        "id": "cassandra",
-                        "name": "cassandra",
-                        "description": "cassandra",
-                        "introduce": "In this article, I’m going to examine the science behind making successful UI icons before teaching you how to make your own embeddable icon font. From designing the individual icons to converting them for @font-face embedding, and even licensing them for distribution, we shall be using only free software and online services. How about that? You will not need to rely on any of the esoteric knowledge required to make successful alphanumeric typefaces; just an eye for designing things that may appear very, very small. Ultimately, you should go away with a process for making design elements that extends far beyond the manufacture of simple icons. Before we continue, something should be said about what exactly we are trying to achieve by using icons in our designs in the first place, and what makes one icon more successful than the next. Theory before application. In order to do this, we must consider the icon’s role as part of semiology."
+                        "id": "cassandraXX",
+                        "name": "cassandraXX",
+                        "description": "cassandraXX",
+                        "introduce": that.markdownConvert.makeHtml("![Alt text](http://visualops.files.wordpress.com/2014/05/spark-with-zk.png?w=1008)\n### Description\nextract an archive file\n\n### Parameters\n\n*   **`source`** (*required*): the archive file url\n\n\t\texample: http(s):///host/path/to/archive.tar.gz\n\n\t>note: currently supported archive format: tar, tgz, tar.gz, bz, bz2, tbz, zip (archive file must end with one of these extention name)\n\t\t\tlocal archive file `file://path/to/file` not supported in this version\n\n*   **`path`** (*required*): the path to extract the archive\n\n\t>note: the path will be auto-created if it doesn't exist\n\n*   **`checksum`** (*optional*): the url of the source checksum file or checksum value string, whose value (content) will be used to verify the integrity of the source archive\n\n\t\texample:\n\t\t\thttp(s):///host/path/to/checksum_file\n\t\t\tmd5:md5_value_string\n\t\t\tsha1:sha1_value_string\n\n*   **`if-path-absent`** (*optional*): extract the archive only if none of the specified path exists, see blow\n\n\t> note: once the source archive is successfully extracted to the specified path, the opsagent will decide whether to re-fetch and extract the source archive depending on or not:\n\t- when `if-path-absent` specified:\n\t\t- if none of the specified paths exist, the archive will be re-fetched, until some paths exist\n\t\t- if some paths exists, the archive will only be re-fetched only if `checksum` is used and its value changes between rounds\n\t- when `if-path-absent` not used:\n\t\t- if `checksum` not used, the archive will be re-fetched in every round\n\t\t- if `checksum` used, thhe archive will be re-fetched if the checksum value changes between rounds\n\t\t\t\t\t")
                     },
                     {
                         "id": "ghost-blog",
@@ -115,216 +125,6 @@ App.prototype.getStateStoreData = function(callback) {
                         "name": "mongo-cluster",
                         "description": "mongo-cluster",
                         "introduce": "mongo-cluster"
-                    },
-                    {
-                        "id": "nginx-upstream",
-                        "name": "nginx-upstream",
-                        "description": "nginx-upstream",
-                        "introduce": "nginx-upstream"
-                    },
-                    {
-                        "id": "redis-cluster",
-                        "name": "redis-cluster",
-                        "description": "redis-cluster",
-                        "introduce": "redis-cluster"
-                    },
-                    {
-                        "id": "mongo-cluster",
-                        "name": "mongo-cluster",
-                        "description": "mongo-cluster",
-                        "introduce": "mongo-cluster"
-                    },
-                    {
-                        "id": "nginx-upstream",
-                        "name": "nginx-upstream",
-                        "description": "nginx-upstream",
-                        "introduce": "nginx-upstream"
-                    },
-                    {
-                        "id": "redis-cluster",
-                        "name": "redis-cluster",
-                        "description": "redis-cluster",
-                        "introduce": "redis-cluster"
-                    },
-                    {
-                        "id": "apache-hadoop",
-                        "name": "apache-hadoop",
-                        "description": "apache-hadoop",
-                        "introduce": "apache-hadoop"
-                    },
-                    {
-                        "id": "cassandra",
-                        "name": "cassandra",
-                        "description": "cassandra",
-                        "introduce": "In this article, I’m going to examine the science behind making successful UI icons before teaching you how to make your own embeddable icon font. From designing the individual icons to converting them for @font-face embedding, and even licensing them for distribution, we shall be using only free software and online services. How about that? You will not need to rely on any of the esoteric knowledge required to make successful alphanumeric typefaces; just an eye for designing things that may appear very, very small. Ultimately, you should go away with a process for making design elements that extends far beyond the manufacture of simple icons. Before we continue, something should be said about what exactly we are trying to achieve by using icons in our designs in the first place, and what makes one icon more successful than the next. Theory before application. In order to do this, we must consider the icon’s role as part of semiology."
-                    },
-                    {
-                        "id": "ghost-blog",
-                        "name": "ghost-blog",
-                        "description": "ghost-blog",
-                        "introduce": "ghost-blog"
-                    },
-                    {
-                        "id": "mongo-cluster",
-                        "name": "mongo-cluster",
-                        "description": "mongo-cluster",
-                        "introduce": "mongo-cluster"
-                    },
-                    {
-                        "id": "nginx-upstream",
-                        "name": "nginx-upstream",
-                        "description": "nginx-upstream",
-                        "introduce": "nginx-upstream"
-                    },
-                    {
-                        "id": "redis-cluster",
-                        "name": "redis-cluster",
-                        "description": "redis-cluster",
-                        "introduce": "redis-cluster"
-                    },
-                    {
-                        "id": "apache-hadoop",
-                        "name": "apache-hadoop",
-                        "description": "apache-hadoop",
-                        "introduce": "apache-hadoop"
-                    },
-                    {
-                        "id": "cassandra",
-                        "name": "cassandra",
-                        "description": "cassandra",
-                        "introduce": "In this article, I’m going to examine the science behind making successful UI icons before teaching you how to make your own embeddable icon font. From designing the individual icons to converting them for @font-face embedding, and even licensing them for distribution, we shall be using only free software and online services. How about that? You will not need to rely on any of the esoteric knowledge required to make successful alphanumeric typefaces; just an eye for designing things that may appear very, very small. Ultimately, you should go away with a process for making design elements that extends far beyond the manufacture of simple icons. Before we continue, something should be said about what exactly we are trying to achieve by using icons in our designs in the first place, and what makes one icon more successful than the next. Theory before application. In order to do this, we must consider the icon’s role as part of semiology."
-                    },
-                    {
-                        "id": "ghost-blog",
-                        "name": "ghost-blog",
-                        "description": "ghost-blog",
-                        "introduce": "ghost-blog"
-                    },
-                    {
-                        "id": "mongo-cluster",
-                        "name": "mongo-cluster",
-                        "description": "mongo-cluster",
-                        "introduce": "mongo-cluster"
-                    },
-                    {
-                        "id": "nginx-upstream",
-                        "name": "nginx-upstream",
-                        "description": "nginx-upstream",
-                        "introduce": "nginx-upstream"
-                    },
-                    {
-                        "id": "redis-cluster",
-                        "name": "redis-cluster",
-                        "description": "redis-cluster",
-                        "introduce": "redis-cluster"
-                    },
-                    {
-                        "id": "mongo-cluster",
-                        "name": "mongo-cluster",
-                        "description": "mongo-cluster",
-                        "introduce": "mongo-cluster"
-                    },
-                    {
-                        "id": "nginx-upstream",
-                        "name": "nginx-upstream",
-                        "description": "nginx-upstream",
-                        "introduce": "nginx-upstream"
-                    },
-                    {
-                        "id": "redis-cluster",
-                        "name": "redis-cluster",
-                        "description": "redis-cluster",
-                        "introduce": "redis-cluster"
-                    },
-                    {
-                        "id": "apache-hadoop",
-                        "name": "apache-hadoop",
-                        "description": "apache-hadoop",
-                        "introduce": "apache-hadoop"
-                    },
-                    {
-                        "id": "cassandra",
-                        "name": "cassandra",
-                        "description": "cassandra",
-                        "introduce": "In this article, I’m going to examine the science behind making successful UI icons before teaching you how to make your own embeddable icon font. From designing the individual icons to converting them for @font-face embedding, and even licensing them for distribution, we shall be using only free software and online services. How about that? You will not need to rely on any of the esoteric knowledge required to make successful alphanumeric typefaces; just an eye for designing things that may appear very, very small. Ultimately, you should go away with a process for making design elements that extends far beyond the manufacture of simple icons. Before we continue, something should be said about what exactly we are trying to achieve by using icons in our designs in the first place, and what makes one icon more successful than the next. Theory before application. In order to do this, we must consider the icon’s role as part of semiology."
-                    },
-                    {
-                        "id": "ghost-blog",
-                        "name": "ghost-blog",
-                        "description": "ghost-blog",
-                        "introduce": "ghost-blog"
-                    },
-                    {
-                        "id": "mongo-cluster",
-                        "name": "mongo-cluster",
-                        "description": "mongo-cluster",
-                        "introduce": "mongo-cluster"
-                    },
-                    {
-                        "id": "nginx-upstream",
-                        "name": "nginx-upstream",
-                        "description": "nginx-upstream",
-                        "introduce": "nginx-upstream"
-                    },
-                    {
-                        "id": "redis-cluster",
-                        "name": "redis-cluster",
-                        "description": "redis-cluster",
-                        "introduce": "redis-cluster"
-                    },
-                    {
-                        "id": "apache-hadoop",
-                        "name": "apache-hadoop",
-                        "description": "apache-hadoop",
-                        "introduce": "apache-hadoop"
-                    },
-                    {
-                        "id": "cassandra",
-                        "name": "cassandra",
-                        "description": "cassandra",
-                        "introduce": "In this article, I’m going to examine the science behind making successful UI icons before teaching you how to make your own embeddable icon font. From designing the individual icons to converting them for @font-face embedding, and even licensing them for distribution, we shall be using only free software and online services. How about that? You will not need to rely on any of the esoteric knowledge required to make successful alphanumeric typefaces; just an eye for designing things that may appear very, very small. Ultimately, you should go away with a process for making design elements that extends far beyond the manufacture of simple icons. Before we continue, something should be said about what exactly we are trying to achieve by using icons in our designs in the first place, and what makes one icon more successful than the next. Theory before application. In order to do this, we must consider the icon’s role as part of semiology."
-                    },
-                    {
-                        "id": "ghost-blog",
-                        "name": "ghost-blog",
-                        "description": "ghost-blog",
-                        "introduce": "ghost-blog"
-                    },
-                    {
-                        "id": "mongo-cluster",
-                        "name": "mongo-cluster",
-                        "description": "mongo-cluster",
-                        "introduce": "mongo-cluster"
-                    },
-                    {
-                        "id": "nginx-upstream",
-                        "name": "nginx-upstream",
-                        "description": "nginx-upstream",
-                        "introduce": "nginx-upstream"
-                    },
-                    {
-                        "id": "redis-cluster",
-                        "name": "redis-cluster",
-                        "description": "redis-cluster",
-                        "introduce": "redis-cluster"
-                    },
-                    {
-                        "id": "mongo-cluster",
-                        "name": "mongo-cluster",
-                        "description": "mongo-cluster",
-                        "introduce": "mongo-cluster"
-                    },
-                    {
-                        "id": "nginx-upstream",
-                        "name": "nginx-upstream",
-                        "description": "nginx-upstream",
-                        "introduce": "nginx-upstream"
-                    },
-                    {
-                        "id": "redis-cluster",
-                        "name": "redis-cluster",
-                        "description": "redis-cluster",
-                        "introduce": "redis-cluster"
                     }
                 ]
                 that.storeDataJSON = dataJSON;
@@ -357,15 +157,24 @@ App.prototype.renderStackList = function() {
 App.prototype.renderStackIntro = function(stackId) {
     var that = this;
     if (stackId === 'index') {
-        $('#main').show();
-        $('#main').removeClass('animation-hidden').addClass('animation-show');
+        // $('#main').removeClass('animation-hide').addClass('animation-show');
         $('#intro').html('');
     } else {
         var stackObj = that.storeDataMap[stackId];
         if (stackObj) {
             var htmlStr = that.stackIntroTpl(stackObj);
-            $('#intro').removeClass('animation-hidden').addClass('animation-show');
-            $('#intro').html(htmlStr);
+            // $('#intro').addClass('animation-show');
+            $('#intro').empty().html(htmlStr);
+
+            var $headerDom = $('#intro .intro-header');
+            var elementPosition = $headerDom.offset();
+            $(window).off('scroll').on('scroll', function(){
+                if($(window).scrollTop() > elementPosition.top){
+                      $headerDom.addClass('float-panel');
+                } else {
+                    $headerDom.removeClass('float-panel');
+                }
+            });
         }
     }
 };

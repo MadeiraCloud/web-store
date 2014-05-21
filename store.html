@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--[if lte IE 9]><html class="lte-ie9"><![endif]-->
+<!--[if gt IE 9]><html><![endif]-->
+<![if !IE]><html><![endif]>
     <head>
         <meta charset="utf-8">
         <title>Stack Store</title>
@@ -7,23 +9,37 @@
         <link rel="stylesheet" type="text/css" href="./style.css">
     </head>
     <body>
-        <div id="header">
-            <img id="logo" src="./logo.svg" />
-        </div>
 
-        <div id="main" class="animation-show">
-            <a class="nav">Stack Store</a>
-            <div class="info">VisualOps StackStore is a application for your driver bi shina application for your driver bi shina application for your driver bi shina application for your driver bi shina application for your driver bi shina </div>
-            <ul id="stack-list"></ul>
-        </div>
+        <section id="wrapper">
 
-        <div id="intro" class="animation-hidden">
+            <header id="header">
+                <a href="http://www.visualops.io/" target="_blank"><img id="logo" src="./logo.svg" /></a>
+                <a class="launch" href="http://www.visualops.io/" target="_blank">MAIN PAGE</a>
+            </header>
 
-        </div>
+            <section id="main">
+                <a class="nav">Stack Store</a>
+                <section class="info">VisualOps StackStore is a application for your driver bi shina application for your driver bi shina application for your driver bi shina application for your driver bi shina application for your driver bi shina </section>
+                <ul id="stack-list">
+                    <div class="gear-loading"></div>
+                </ul>
+            </section>
 
-        <div class="gear-loading"></div>
+            <section id="intro">
+                <div class="gear-loading"></div>
+            </section>
 
-        <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+            <footer id="footer">
+                <div class="info">
+                    <div>© MadeiraCloud 2014   |  <a href="http://www.visualops.io/terms-conditions-privacy-policy">Terms, Conditions and Privacy Policy</a></div>
+                    <div>795 Folsom St, San Francisco, CA, USA.</div>
+                </div>
+            </footer>
+
+        </section>
+
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
         <script type="text/javascript" src="./lib.min.js"></script>
 
         <script id="stack-list-tpl" type="text/x-dot-template">
@@ -39,7 +55,7 @@
 
         <script id="stack-intro-tpl" type="text/x-dot-template">
             <a class="nav" href="#index"><i class="icon icon-left-open"></i>Stack Store</a>
-            <div class="intro-header">
+            <header class="intro-header">
                 <div class="head">
                     <img class="logo" src="http://www.appanddone.com/assets/redis-654907cad1b25527e74c2f65c442575b.png" />
                     <div class="info">
@@ -48,7 +64,7 @@
                     </div>
                 </div>
                 <a class="run" href="http://127.0.0.1:3000/" target="_blank" data-id="{{=it.id}}"><i class="icon icon-play"></i>Launch</a>
-            </div>
+            </header>
             <div class="intro">{{=it.introduce}}</div>
         </script>
 
