@@ -36,13 +36,6 @@ var App = function() {
     routie('!:stackId', function(stackId) {
         that.stackId = stackId;
         if (that.dataReady) {
-            DISQUS.reset({
-                reload: true,
-                config: function () {  
-                    this.page.identifier = stackId;  
-                    this.page.url = that.disqusURL + '#!' + stackId;
-                }
-            });
             that.renderStackIntro(stackId);
         }
     });
@@ -170,6 +163,18 @@ App.prototype.renderStackList = function() {
     });
 };
 
+App.prototype.refreshDisqus = function(stackId) {
+    var that = this;
+    DISQUS.reset({
+        reload: true,
+        config: function () {  
+            this.page.identifier = stackId;  
+            this.page.url = that.disqusURL + '#!' + stackId;
+        }
+    });
+    $('#disqus_thread').show();
+};
+
 App.prototype.renderStackIntro = function(stackId) {
     var that = this;
     $introDom = $('#intro');
@@ -186,7 +191,7 @@ App.prototype.renderStackIntro = function(stackId) {
                 } else {
                     var htmlStr = that.stackIntroTpl(stackObj);
                     $introDom.html(htmlStr);
-                    $('#disqus_thread').show();
+                    that.refreshDisqus(stackId);
                     var $headerDom = $('#intro .intro-header');
                     var elementPosition = $headerDom.offset();
                     $(window).off('scroll').on('scroll', function() {
