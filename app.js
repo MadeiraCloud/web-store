@@ -58,7 +58,6 @@ App.prototype.switchTo = function(page) {
     if (page === 'intro') {
         $('#main').hide().removeClass('animation-show').addClass('animation-hide');
         $('#intro').show().removeClass('animation-hide').addClass('animation-show');
-        $('#disqus_thread').show();
     } else {
         $('#main').show().removeClass('animation-hide').addClass('animation-show');
         $('#intro').hide().removeClass('animation-show').addClass('animation-hide');
@@ -86,7 +85,7 @@ App.prototype.getStateStoreIntro = function(stackObj, callback) {
                 "jsonrpc": "2.0",
                 "id": (new Date()).getTime(),
                 "method": "fetch_stackstore",
-                "params": ['stack/' + stackObj.id + "/README.md"]
+                "params": ['master/stack/' + stackObj.id + "/README.md"]
             }),
             success: function(result) {
                 try {
@@ -125,7 +124,7 @@ App.prototype.getStateStoreList = function(callback) {
                 "jsonrpc": "2.0",
                 "id": (new Date()).getTime(),
                 "method": "fetch_stackstore",
-                "params": ["description.json"]
+                "params": ["master/description.json"]
             }),
             success: function(result) {
                 try {
@@ -187,6 +186,7 @@ App.prototype.renderStackIntro = function(stackId) {
                 } else {
                     var htmlStr = that.stackIntroTpl(stackObj);
                     $introDom.html(htmlStr);
+                    $('#disqus_thread').show();
                     var $headerDom = $('#intro .intro-header');
                     var elementPosition = $headerDom.offset();
                     $(window).off('scroll').on('scroll', function() {
