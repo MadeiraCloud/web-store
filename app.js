@@ -134,8 +134,7 @@ App.prototype.renderStackIntro = function(stackId) {
             var htmlStr = that.stackIntroTpl(stackObj);
             $introDom.html(htmlStr);
             var $headerDom = $('#intro .intro-header');
-            var $introContentDom = $('#intro .intro');
-            var elementPosition = $introContentDom.offset();
+            var elementPosition = $headerDom.offset();
             $(window).off('scroll').on('scroll', function() {
                 var windowScrollTop = $(window).scrollTop();
                 if (windowScrollTop > elementPosition.top) {

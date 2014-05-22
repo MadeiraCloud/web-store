@@ -136,6 +136,12 @@ a {
 	border-left: 5px solid rgba(79,34,116,0.9);
 }
 
+#intro .header-wrapper {
+	height: 62px;
+	width: 100%;
+	margin-top: 50px;
+}
+
 #intro .nav {
 	cursor: pointer;
 }
@@ -183,7 +189,6 @@ a {
 }
 
 #intro .intro-header {
-	margin-top: 50px;
 	overflow: auto;
 	width: 1024px;
 }
@@ -261,11 +266,6 @@ a {
 	margin-top: 0 !important;
 	opacity: 0.95;
 	z-index: 999;
-}
-
-.header-wrapper {
-	height: 62px;
-	width: 100%;
 }
 
 .service-error {
