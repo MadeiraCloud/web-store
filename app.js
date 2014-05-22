@@ -5,7 +5,7 @@ var App = function() {
     that.apiURL = 'http://api.mc3.io/stackstore/';
     that.launchURL = 'http://ide.mc3.io/';
     that.disqusURL = 'http://store.mc3.io/';
-    that.gitBranch = 'develop';
+    that.gitBranch = 'hotfix/store-site';
 
     $.support.cors = true;
 
@@ -117,7 +117,7 @@ App.prototype.getStateStoreList = function(callback) {
                 "jsonrpc": "2.0",
                 "id": (new Date()).getTime(),
                 "method": "fetch_stackstore",
-                "params": [that.gitBranch + '/description.json']
+                "params": [that.gitBranch + '/index.json']
             }),
             success: function(result) {
                 try {
