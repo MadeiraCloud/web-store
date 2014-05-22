@@ -91,16 +91,21 @@ a {
 	opacity: 1;
 }
 
-#main, #intro {
+#container {
 	margin: 0 auto;
 	margin-top: 100px;
 	width: 1024px;
-	position: relative;
-	margin-left: -512px;
-	left: 50%;
 	padding-bottom: 150px;
 	min-height: 300px;
+}
+
+#main, #intro {
 	display: none;
+	position: relative;
+	margin-left: -512px;
+	width: 1024px;
+	left: 50%;
+	min-height: 200px;
 }
 
 #stack-list {
@@ -277,6 +282,23 @@ a {
 	right: 0;
 	left: 0;
 	color: #ccc;
+}
+
+#share-btns {
+	float: right;
+	margin-top: 10px;
+	z-index: 2;
+	position: relative;
+}
+
+.addthis_toolbox a {
+	margin-right: 5px;
+}
+
+#disqus_thread {
+	display: none;
+	padding: 20px 37px;
+	display: block;
 }
 
 /* animation */

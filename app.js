@@ -4,6 +4,7 @@ var App = function() {
     that.cookieDomain = '.mc3.io';
     that.apiURL = 'http://api.mc3.io/stackstore/';
     that.launchURL = 'http://ide.mc3.io/';
+    that.disqusURL = 'http://store.mc3.io/';
 
     $.support.cors = true;
 
@@ -31,11 +32,20 @@ var App = function() {
         that.switchTo('main');
     });
 
-    routie(':stackId', function(stackId) {
+    routie('!:stackId', function(stackId) {
         that.stackId = stackId;
         if (that.dataReady) {
             that.renderStackIntro(stackId);
         }
+
+        DISQUS.reset({
+            reload: true,
+            config: function () {  
+                this.page.identifier = stackId;  
+                this.page.url = that.disqusURL + '#!' + stackId;
+            }
+        });
+
     });
 
     if (!that.stackId || that.stackId === 'index') {
@@ -49,9 +59,11 @@ App.prototype.switchTo = function(page) {
     if (page === 'intro') {
         $('#main').hide().removeClass('animation-show').addClass('animation-hide');
         $('#intro').show().removeClass('animation-hide').addClass('animation-show');
+        $('#disqus_thread').show();
     } else {
         $('#main').show().removeClass('animation-hide').addClass('animation-show');
         $('#intro').hide().removeClass('animation-show').addClass('animation-hide');
+        $('#disqus_thread').hide();
     }
 };
 

@@ -16,17 +16,35 @@
                 <a class="launch" href="http://www.visualops.io/" target="_blank">HOME</a>
             </header>
 
-            <section id="main">
-                <a class="nav">Stack Store</a>
-                <section class="info">VisualOps StackStore is a application for your driver bi shina application for your driver bi shina application for your driver bi shina application for your driver bi shina application for your driver bi shina </section>
-                <ul id="stack-list">
-                    <div class="gear-loading"></div>
-                </ul>
-            </section>
+            <article id="container">
 
-            <section id="intro">
-                <div class="gear-loading"></div>
-            </section>
+                <div id="share-btns">
+                    <div class="addthis_toolbox addthis_default_style addthis_16x16_style">
+                        <a class="addthis_button_facebook"></a>
+                        <a class="addthis_button_twitter"></a>
+                        <a class="addthis_button_google_plusone_share"></a>
+                        <a class="addthis_button_linkedin"></a>
+                        <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
+                    </div>
+                    <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+                    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-537d73075791218f"></script>
+                </div>
+
+                <section id="main">
+                    <a class="nav">Stack Store</a>
+                    <section class="info">VisualOps StackStore is a application for your driver bi shina application for your driver bi shina application for your driver bi shina application for your driver bi shina application for your driver bi shina </section>
+                    <ul id="stack-list">
+                        <div class="gear-loading"></div>
+                    </ul>
+                </section>
+
+                <section id="intro">
+                    <div class="gear-loading"></div>
+                </section>
+
+                <div id="disqus_thread"></div>
+
+            </article>
 
             <footer id="footer">
                 <div class="info">
@@ -40,7 +58,7 @@
         <script id="stack-list-tpl" type="text/x-dot-template">
             {{~it :value:index}}
                 <li class="stack-item">
-                    <a href="#{{=value.id}}">
+                    <a href="#!{{=value.id}}">
                         <img class="logo" src="http://www.appanddone.com/assets/redis-654907cad1b25527e74c2f65c442575b.png" />
                         <div class="link">{{=value.name}}</div>
                     </a>
@@ -49,7 +67,7 @@
         </script>
 
         <script id="stack-intro-tpl" type="text/x-dot-template">
-            <a class="nav" href="#index"><i class="icon icon-left-open"></i>Stack Store</a>
+            <a class="nav" href="#!index"><i class="icon icon-left-open"></i>Stack Store</a>
             <div class="header-wrapper">
                 <header class="intro-header">
                     <div class="head">
@@ -57,6 +75,7 @@
                         <div class="info">
                             <div class="name">{{=it.name}}</div>
                             <div class="description" title="{{=it.description}}">{{=it.description}}</div>
+                            <div class="share-btns"></div>
                         </div>
                     </div>
                     <a class="run" href="{{=it.launch_url}}" target="_blank" data-id="{{=it.id}}"><i class="icon icon-play"></i>Launch</a>
@@ -65,6 +84,7 @@
             <div class="intro">{{=it.introduce}}</div>
         </script>
 
+        <script type="text/javascript" src="//mc3-store.disqus.com/embed.js"></script>
         <script type="text/javascript" src="lib.js"></script>
         <script type="text/javascript" src="app.js"></script>
     </body>
