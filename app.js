@@ -5,6 +5,7 @@ var App = function() {
     that.apiURL = 'http://api.mc3.io/stackstore/';
     that.launchURL = 'http://ide.mc3.io/';
     that.disqusURL = 'http://store.mc3.io/';
+    // that.githubURL = 'https://raw.githubusercontent.com/VisualOps/StackStore/master/stack/';
 
     $.support.cors = true;
 
@@ -35,17 +36,15 @@ var App = function() {
     routie('!:stackId', function(stackId) {
         that.stackId = stackId;
         if (that.dataReady) {
+            DISQUS.reset({
+                reload: true,
+                config: function () {  
+                    this.page.identifier = stackId;  
+                    this.page.url = that.disqusURL + '#!' + stackId;
+                }
+            });
             that.renderStackIntro(stackId);
         }
-
-        DISQUS.reset({
-            reload: true,
-            config: function () {  
-                this.page.identifier = stackId;  
-                this.page.url = that.disqusURL + '#!' + stackId;
-            }
-        });
-
     });
 
     if (!that.stackId || that.stackId === 'index') {
@@ -67,7 +66,52 @@ App.prototype.switchTo = function(page) {
     }
 };
 
-App.prototype.getStateStoreData = function(callback) {
+App.prototype.renderErrorInfo = function(infoTxt) {
+    var that = this;
+    that.switchTo('main');
+    $('#stack-list').html('<div class="service-error">' + infoTxt + '</div>');
+};
+
+App.prototype.getStateStoreIntro = function(stackObj, callback) {
+    var that = this;
+    if (stackObj.introduce) {
+        callback(null);
+    } else {
+        $.ajax({
+            url: that.apiURL,
+            dataType: 'JSON',
+            contentType: 'text/plain',
+            type: 'POST',
+            data: JSON.stringify({
+                "jsonrpc": "2.0",
+                "id": (new Date()).getTime(),
+                "method": "fetch_stackstore",
+                "params": ['stack/' + stackObj.id + "/README.md"]
+            }),
+            success: function(result) {
+                try {
+                    var resultData = result.result;
+                    var returnCode = resultData[0];
+                    if (!returnCode) {
+                        var returnData = resultData[1];
+                        stackObj.introduce = returnData;
+                        stackObj.introduce = that.markdownConvert.makeHtml(stackObj.introduce);
+                        callback(null);
+                    } else {
+                        callback(true);
+                    }
+                } catch(err) {
+                    callback(true);
+                }
+            },
+            error: function(xhr, status, error) {
+                callback(true);
+            }
+        });
+    }
+};
+
+App.prototype.getStateStoreList = function(callback) {
     var that = this;
     if (that.storeDataJSON) {
         callback(null);
@@ -93,7 +137,6 @@ App.prototype.getStateStoreData = function(callback) {
                         that.storeDataMap = {};
                         for (var idx in that.storeDataJSON) {
                             var stackObj = that.storeDataJSON[idx];
-                            stackObj.introduce = that.markdownConvert.makeHtml(stackObj.introduce);
                             stackObj.launch_url = that.launchURL;
                             that.storeDataMap[stackObj.id] = stackObj;
                         }
@@ -118,7 +161,7 @@ App.prototype.getStateStoreData = function(callback) {
 
 App.prototype.renderStackList = function() {
     var that = this;
-    that.getStateStoreData(function(err) {
+    that.getStateStoreList(function(err) {
         if (err) {
             that.renderErrorInfo('Service temporarily not available :(');
         } else {
@@ -128,34 +171,34 @@ App.prototype.renderStackList = function() {
     });
 };
 
-App.prototype.renderErrorInfo = function(infoTxt) {
-    var that = this;
-    that.switchTo('main');
-    $('#stack-list').html('<div class="service-error">' + infoTxt + '</div>');
-};
-
 App.prototype.renderStackIntro = function(stackId) {
     var that = this;
     $introDom = $('#intro');
     if (stackId === 'index') {
-        $introDom.html('');
+        $introDom.html('<div class="gear-loading"></div>');
         that.switchTo('main');
     } else {
         var stackObj = that.storeDataMap[stackId];
         if (stackObj) {
-            var htmlStr = that.stackIntroTpl(stackObj);
-            $introDom.html(htmlStr);
-            var $headerDom = $('#intro .intro-header');
-            var elementPosition = $headerDom.offset();
-            $(window).off('scroll').on('scroll', function() {
-                var windowScrollTop = $(window).scrollTop();
-                if (windowScrollTop > elementPosition.top) {
-                      $headerDom.addClass('float-panel');
+            that.switchTo('intro');            
+            that.getStateStoreIntro(stackObj, function(err) {
+                if (err) {
+                    that.renderErrorInfo('Service temporarily not available :(');
                 } else {
-                    $headerDom.removeClass('float-panel');
+                    var htmlStr = that.stackIntroTpl(stackObj);
+                    $introDom.html(htmlStr);
+                    var $headerDom = $('#intro .intro-header');
+                    var elementPosition = $headerDom.offset();
+                    $(window).off('scroll').on('scroll', function() {
+                        var windowScrollTop = $(window).scrollTop();
+                        if (windowScrollTop > elementPosition.top) {
+                              $headerDom.addClass('float-panel');
+                        } else {
+                            $headerDom.removeClass('float-panel');
+                        }
+                    });
                 }
             });
-            that.switchTo('intro');
         } else {
             that.renderErrorInfo('Page not found :(');
         }

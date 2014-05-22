@@ -59,7 +59,7 @@
             {{~it :value:index}}
                 <li class="stack-item">
                     <a href="#!{{=value.id}}">
-                        <img class="logo" src="http://www.appanddone.com/assets/redis-654907cad1b25527e74c2f65c442575b.png" />
+                        <img class="logo" src="{{=value.icon}}" />
                         <div class="link">{{=value.name}}</div>
                     </a>
                 </li>
@@ -71,10 +71,10 @@
             <div class="header-wrapper">
                 <header class="intro-header">
                     <div class="head">
-                        <img class="logo" src="http://www.appanddone.com/assets/redis-654907cad1b25527e74c2f65c442575b.png" />
+                        <img class="logo" src="{{=it.icon}}" />
                         <div class="info">
                             <div class="name">{{=it.name}}</div>
-                            <div class="description" title="{{=it.description}}">{{=it.description}}</div>
+                            <div class="description" title="{{=it.author}}">{{=it.author}}</div>
                             <div class="share-btns"></div>
                         </div>
                     </div>
