@@ -5,7 +5,7 @@ var App = function() {
     that.apiURL = 'http://api.mc3.io/stackstore/';
     that.launchURL = 'http://ide.mc3.io/';
     that.disqusURL = 'http://store.mc3.io/';
-    // that.githubURL = 'https://raw.githubusercontent.com/VisualOps/StackStore/master/stack/';
+    that.gitBranch = 'develop';
 
     $.support.cors = true;
 
@@ -78,7 +78,7 @@ App.prototype.getStateStoreIntro = function(stackObj, callback) {
                 "jsonrpc": "2.0",
                 "id": (new Date()).getTime(),
                 "method": "fetch_stackstore",
-                "params": ['master/stack/' + stackObj.id + "/README.md"]
+                "params": [that.gitBranch + '/stack/' + stackObj.id + "/README.md"]
             }),
             success: function(result) {
                 try {
@@ -117,7 +117,7 @@ App.prototype.getStateStoreList = function(callback) {
                 "jsonrpc": "2.0",
                 "id": (new Date()).getTime(),
                 "method": "fetch_stackstore",
-                "params": ["master/description.json"]
+                "params": [that.gitBranch + '/description.json']
             }),
             success: function(result) {
                 try {
