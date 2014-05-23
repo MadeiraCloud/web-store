@@ -33,7 +33,7 @@ var App = function() {
         that.switchTo('main');
     });
 
-    routie('!:stackId', function(stackId) {
+    routie('!:stackId#:commentId', function(stackId) {
         that.stackId = stackId;
         if (that.dataReady) {
             that.renderStackIntro(stackId);
