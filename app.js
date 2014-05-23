@@ -165,6 +165,7 @@ App.prototype.renderStackList = function() {
 
 App.prototype.refreshDisqus = function(stackId) {
     var that = this;
+    var disqusStackId = stackId + '_comment';
     DISQUS.reset({
         reload: true,
         config: function () {  
