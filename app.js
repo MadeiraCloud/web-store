@@ -33,8 +33,8 @@ var App = function() {
         that.switchTo('main');
     });
 
-    routie('!:stackId#:commentId', function(stackId, commentId) {
-        that.stackId = stackId;
+    routie('!:stackId', function(stackId) {
+        that.stackId = stackId.split('#')[0];
         if (that.dataReady) {
             that.renderStackIntro(stackId);
         }
@@ -165,7 +165,7 @@ App.prototype.renderStackList = function() {
 
 App.prototype.refreshDisqus = function(stackId) {
     var that = this;
-    var disqusStackId = stackId + '#';
+    var disqusStackId = stackId + '#comment';
     DISQUS.reset({
         reload: true,
         config: function () {  
