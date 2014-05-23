@@ -169,8 +169,8 @@ App.prototype.refreshDisqus = function(stackId) {
     DISQUS.reset({
         reload: true,
         config: function () {  
-            this.page.identifier = stackId;  
-            this.page.url = that.disqusURL + '#!' + stackId;
+            this.page.identifier = disqusStackId;  
+            this.page.url = that.disqusURL + '#!' + disqusStackId;
         }
     });
     $('#disqus_thread').show();
