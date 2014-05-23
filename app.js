@@ -36,7 +36,7 @@ var App = function() {
     routie('!:stackId', function(stackId) {
         that.stackId = stackId.split('#')[0];
         if (that.dataReady) {
-            that.renderStackIntro(stackId);
+            that.renderStackIntro(that.stackId);
         }
     });
 
