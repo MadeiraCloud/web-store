@@ -7,7 +7,7 @@ var App = function() {
     that.cookieDomain = '127.0.0.1';
     that.launchURL = 'http://127.0.0.1:3000';
     
-    that.disqusURL = 'http://store.mc3.io/';
+    that.disqusURL = 'http://store.visualops.io/';
 
     $.support.cors = true;
 
@@ -129,7 +129,6 @@ App.prototype.getStateStoreList = function(callback) {
                     if (!returnCode) {
                         var returnData = resultData[1];
                         that.storeDataJSON = JSON.parse(returnData);
-                        that.storeDataJSON = that.storeDataJSON.concat(that.storeDataJSON).concat(that.storeDataJSON).concat(that.storeDataJSON).concat(that.storeDataJSON).concat(that.storeDataJSON)
                         that.storeDataMap = {};
                         for (var idx in that.storeDataJSON) {
                             var stackObj = that.storeDataJSON[idx];
