@@ -246,10 +246,12 @@ a {
 }
 
 #intro .intro-header .name {
+	font-size: 24px;
 	font-weight: bold;
 }
 
 #intro .intro-header .description {
+	font-size: 14px;
 	color: #aaa;
 	margin-top: 5px;
 	white-space: nowrap;
