@@ -1,11 +1,13 @@
 var App = function() {
     var that = this;
 
-    that.cookieDomain = '.mc3.io';
     that.apiURL = 'http://api.mc3.io/stackstore/';
-    that.launchURL = 'http://ide.mc3.io/';
-    that.disqusURL = 'http://store.mc3.io/';
     that.gitBranch = 'hotfix/store-site';
+
+    that.cookieDomain = '127.0.0.1';
+    that.launchURL = 'http://127.0.0.1:3000';
+    
+    that.disqusURL = 'http://store.mc3.io/';
 
     $.support.cors = true;
 
@@ -24,7 +26,8 @@ var App = function() {
         var stackId = btnDom.data('id');
         var stackIdStamp = stackId + '#' + (new Date()).getTime();
         $.cookie('stack_store_id', stackIdStamp, {
-            domain: that.cookieDomain
+            domain: that.cookieDomain,
+            expires: 30
         });
     }).on('click', '#main .stack-item a', function(event) {
         that.switchTo('intro');
@@ -126,10 +129,11 @@ App.prototype.getStateStoreList = function(callback) {
                     if (!returnCode) {
                         var returnData = resultData[1];
                         that.storeDataJSON = JSON.parse(returnData);
+                        that.storeDataJSON = that.storeDataJSON.concat(that.storeDataJSON).concat(that.storeDataJSON).concat(that.storeDataJSON).concat(that.storeDataJSON).concat(that.storeDataJSON)
                         that.storeDataMap = {};
                         for (var idx in that.storeDataJSON) {
                             var stackObj = that.storeDataJSON[idx];
-                            stackObj.launch_url = that.launchURL;
+                            stackObj.launch_url = that.launchURL + '#';
                             that.storeDataMap[stackObj.id] = stackObj;
                         }
                         if (that.stackId && !that.dataReady) {

@@ -114,6 +114,7 @@ a {
 	overflow: auto;
 	padding-left: 45px;
 	min-height: 300px;
+	overflow: hidden;
 }
 
 #main .info {
