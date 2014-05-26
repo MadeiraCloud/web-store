@@ -265,7 +265,7 @@ a {
 	color: #333;
 	font-size: 18px;
 	margin-top: 35px;
-	text-align: justify;
+	/*text-align: justify;*/
 	padding: 25px 40px;
 	/*text-indent: 35px;*/
 	line-height: 30px;
