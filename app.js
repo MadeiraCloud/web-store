@@ -5,7 +5,7 @@ var App = function() {
     that.gitBranch = 'master';
 
     that.cookieDomain = '.visualops.io';
-    that.launchURL = 'http://ide.visualops.io';
+    that.launchURL = 'https://ide.visualops.io';
     
     that.disqusURL = 'http://store.visualops.io/';
 
