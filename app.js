@@ -27,7 +27,8 @@ var App = function() {
         var stackIdStamp = stackId + '#' + (new Date()).getTime();
         $.cookie('stack_store_id', stackIdStamp, {
             domain: that.cookieDomain,
-            expires: 30
+            expires: 30,
+            path: '/'
         });
     }).on('click', '#main .stack-item a', function(event) {
         that.switchTo('intro');
