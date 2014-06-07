@@ -560,6 +560,7 @@ a {
     left: 100px;
     position: absolute;
     margin: 0 auto;
+    min-width: 1200px;
 }
 
 #footer .info {

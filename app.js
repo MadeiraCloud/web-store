@@ -1,7 +1,7 @@
 var App = function() {
     var that = this;
 
-    that.apiURL = 'http://api.mc3.io/stackstore/';
+    that.apiURL = 'http://api.visualops.io/stackstore/';
     that.gitBranch = 'master';
 
     that.cookieDomain = '.visualops.io';
