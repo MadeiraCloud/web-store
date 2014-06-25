@@ -1,13 +1,13 @@
 var App = function() {
     var that = this;
 
-    that.apiURL = 'http://api.visualops.io/stackstore/';
+    that.apiURL = 'http://api.mc3.io/stackstore/';
     that.gitBranch = 'master';
 
-    that.cookieDomain = '.visualops.io';
-    that.launchURL = 'https://ide.visualops.io';
+    that.cookieDomain = '.mc3.io';
+    that.launchURL = 'https://ide.mc3.io/store/';
     
-    that.disqusURL = 'http://store.visualops.io/';
+    that.disqusURL = 'http://store.mc3.io/';
 
     $.support.cors = true;
 
@@ -133,7 +133,7 @@ App.prototype.getStateStoreList = function(callback) {
                         that.storeDataMap = {};
                         for (var idx in that.storeDataJSON) {
                             var stackObj = that.storeDataJSON[idx];
-                            stackObj.launch_url = that.launchURL + '#';
+                            stackObj.launch_url = that.launchURL + stackObj.id;
                             that.storeDataMap[stackObj.id] = stackObj;
                         }
                         if (that.stackId && !that.dataReady) {
