@@ -5,7 +5,7 @@ var App = function() {
     that.gitBranch = 'master';
 
     that.cookieDomain = '.mc3.io';
-    that.launchURL = 'https://ide.mc3.io/store/';
+    that.launchURL = 'http://ide.mc3.io/store/';
     
     that.disqusURL = 'http://store.mc3.io/';
 
