@@ -1,13 +1,13 @@
 var App = function() {
     var that = this;
 
-    that.apiURL = 'http://api.mc3.io/stackstore/';
+    that.apiURL = 'http://api.visualops.io/stackstore/';
     that.gitBranch = 'master';
 
-    that.cookieDomain = '.mc3.io';
-    that.launchURL = 'http://ide.mc3.io/store/';
+    that.cookieDomain = '.visualops.io';
+    that.launchURL = 'http://ide.visualops.io/store/';
     
-    that.disqusURL = 'http://store.mc3.io/';
+    that.disqusURL = 'http://store.visualops.io/';
 
     $.support.cors = true;
 
