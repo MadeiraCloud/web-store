@@ -22,14 +22,14 @@ var App = function() {
     that.stackId = null;
 
     $(document).on('click', '#intro .run', function(event) {
-        var btnDom = $(event.currentTarget);
-        var stackId = btnDom.data('id');
-        var stackIdStamp = stackId + '#' + (new Date()).getTime();
-        $.cookie('stack_store_id', stackIdStamp, {
-            domain: that.cookieDomain,
-            expires: 30,
-            path: '/'
-        });
+        // var btnDom = $(event.currentTarget);
+        // var stackId = btnDom.data('id');
+        // var stackIdStamp = stackId + '#' + (new Date()).getTime();
+        // $.cookie('stack_store_id', stackIdStamp, {
+        //     domain: that.cookieDomain,
+        //     expires: 30,
+        //     path: '/'
+        // });
     }).on('click', '#main .stack-item a', function(event) {
         that.switchTo('intro');
         $(document).scrollTop(0);
