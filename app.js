@@ -14,7 +14,7 @@ var App = function() {
     that.stackListTpl = doT.template($('#stack-list-tpl').html());
     that.stackIntroTpl = doT.template($('#stack-intro-tpl').html());
 
-    that.markdownConvert = new Markdown.Converter()
+    that.markdownConvert = new Markdown.Converter();
     
     that.storeDataJSON = null;
     that.storeDataMap = null;
