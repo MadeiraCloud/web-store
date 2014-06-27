@@ -460,7 +460,7 @@ a {
 #header {
     width: 100%;
     height: 90px;
-    background-color: rgba(79,34,116,0.9);
+    background-color: #383975;
 }
 
 .header-wrap {
@@ -486,7 +486,8 @@ a {
 }
 
 #header .launch:hover {
-    background-color: rgba(79,34,116,1);
+    background: #fff;
+    color: #383975;
 }
 
 #logo {
