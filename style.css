@@ -614,10 +614,17 @@ only screen and (min-device-pixel-ratio: 2) {
 
 .network_wrap .github   { background-position : -100px -250px; }
 .network_wrap .twitter  { background-position : -150px -250px; }
-.network_wrap .facebook { background-position : -200px -250px; }
 .network_wrap .gplus    { background-position : -250px -250px; }
 .network_wrap .vimeo    { background-position : -300px -250px; }
 .network_wrap .linkedin { background-position : -350px -250px; }
+.network_wrap .facebook {
+    background: url(facebook.png) no-repeat;
+    background-size: 50px;
+}
+.network_wrap .youtube {
+    background: url(youtube.png) no-repeat;
+    background-size: 50px;
+}
 
 .arn img {
     width: 276px;
