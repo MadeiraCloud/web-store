@@ -21,6 +21,12 @@
     </head>
     <body>
 
+        <script type="text/javascript">
+            // for registered
+            var m = document.cookie.match(/has_session=([^; ]+)/);
+            if ( m ) { document.body.className = "registered"; }
+        </script>
+
         <section id="wrapper">
 
             <header id="header">
