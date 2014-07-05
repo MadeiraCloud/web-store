@@ -485,9 +485,40 @@ a {
     transition: background 0.2s linear;
 }
 
-#header .launch:hover {
+.nav_register, .nav_login {
+    display: block;
+}
+
+.nav_ide {
+    display: none;
+}
+
+.registered .nav_register, .registered .nav_login{
+    display: none;
+}
+
+.registered .nav_ide{
+    display: block;
+}
+
+.nav_register, .nav_login {
+  height       : 38px;
+  line-height  : 38px;
+  padding      : 0 1em;
+  float        : right;
+  border       : 1px solid #fff;
+  margin-right : -1px !important;
+  margin-top   : 26px;
+  border-radius: 4px 0 0 4px;
+}
+
+.nav_register:hover, .nav_login:hover, .nav_ide:hover {
     background: #fff;
     color: #383975;
+}
+
+.nav_register {
+    border-radius : 0 4px 4px 0;
 }
 
 #logo {
