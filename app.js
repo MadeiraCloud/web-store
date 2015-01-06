@@ -216,11 +216,6 @@ App.prototype.renderStackIntro = function(stackId) {
 };
 
 $(function() {
-
-    // for registered
-    var m = document.cookie.match(/has_session=([^; ]+)/);
-    if ( m ) { document.body.className = "registered"; }
-
     var app = new App();
     app.renderStackList();
 });
