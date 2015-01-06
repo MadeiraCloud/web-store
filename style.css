@@ -120,6 +120,7 @@ a {
 #stack-list li a {
     color: #333;
     margin: 5px 10px;
+    display: block;
 }
 
 #stack-list li:hover {
@@ -243,6 +244,10 @@ a {
     z-index: 2;
     position: relative;
     min-width: 165px;
+}
+
+#_atssh {
+    display: none;
 }
 
 .addthis_toolbox a {
